@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">DicodingStory</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Berbagi cerita pengalaman ngodingmu, ya di Dicoding Story aja!</string>
+    <string name="title_welcome_page">Selamat datang di Dicoding Story!</string>
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Mari mulai bercerita</string>
+    <string name="name">Nama</string>
+    <string name="message_main_page">Selamat datang di Dicoding Story! Silahkan pilih salah satu menu berikut.</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Keluar</string>
+    <string name="juduL_cerita">judul cerita</string>
+    <string name="baca_cerita">Baca Cerita</string>
+    <string name="contoh_deskripsi">Contoh Deskripsi</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="upload">Upload</string>
+    <string name="description_hint">Description</string>
+    <string name="tambah_cerita">Tambah Cerita</string>
+    <string name="empty_image">Image belum terupload</string>
+</resources>
