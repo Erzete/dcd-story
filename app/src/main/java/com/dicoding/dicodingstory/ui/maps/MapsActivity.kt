@@ -1,8 +1,10 @@
 package com.dicoding.dicodingstory.ui.maps
 
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -18,6 +20,7 @@ import com.dicoding.dicodingstory.databinding.ActivityMapsBinding
 import com.dicoding.dicodingstory.ui.StoryViewModelFactory
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MapStyleOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -58,6 +61,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isMapToolbarEnabled = true
 
         getMyLocation()
+        setMapStyle()
 
         viewModel.listStory.observe(this) { stories ->
             addStoryMarker(stories)
@@ -85,6 +89,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    private fun setMapStyle() {
+        try {
+            val success =
+                mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.")
+            }
+        } catch (exception: Resources.NotFoundException) {
+            Log.e(TAG, "Can't find style. Error: ", exception)
+        }
+    }
+
     private fun addStoryMarker(stories: List<StoryItem>) {
         stories.forEach { story ->
             val latLng = LatLng(story.lat, story.lon)
@@ -101,5 +117,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 300
             )
         )
+    }
+
+    companion object {
+        private const val TAG = "MapsActivity"
     }
 }
