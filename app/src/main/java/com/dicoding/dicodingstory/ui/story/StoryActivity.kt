@@ -1,14 +1,17 @@
 package com.dicoding.dicodingstory.ui.story
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.dicodingstory.data.remote.response.StoryItem
+import com.dicoding.dicodingstory.R
 import com.dicoding.dicodingstory.databinding.ActivityStoryBinding
 import com.dicoding.dicodingstory.ui.StoryViewModelFactory
+import com.dicoding.dicodingstory.ui.maps.MapsActivity
 
 class StoryActivity : AppCompatActivity() {
     private val viewModel by viewModels<StoryViewModel> {
@@ -26,22 +29,33 @@ class StoryActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvStory.addItemDecoration(itemDecoration)
 
-        viewModel.listStory.observe(this) { stories ->
-            setStoriesData(stories)
-        }
-
-        viewModel.isLoading.observe(this) {
-            showLoading(it)
-        }
+        getStoriesData()
     }
 
-    private fun setStoriesData(stories: List<StoryItem>) {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.maps_menu -> {
+                val intent = Intent(this, MapsActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun getStoriesData() {
         val adapter = StoryAdapter()
-        adapter.submitList(stories)
-        binding.rvStory.adapter = adapter
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.rvStory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        viewModel.listStory.observe(this) {
+            adapter.submitData(lifecycle, it)
+        }
     }
 }

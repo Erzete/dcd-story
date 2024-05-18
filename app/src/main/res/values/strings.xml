@@ -22,4 +22,7 @@
     <string name="description_hint">Description</string>
     <string name="tambah_cerita">Tambah Cerita</string>
     <string name="empty_image">Image belum terupload</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="maps">Story Maps</string>
+    <string name="retry">Coba lagi</string>
 </resources>

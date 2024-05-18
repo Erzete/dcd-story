@@ -32,11 +32,11 @@ data class StoryItem(
 	val description: String,
 
 	@field:SerializedName("lon")
-	val lon: String? = null,
+	val lon: Double,
 
 	@field:SerializedName("id")
 	val id: String,
 
 	@field:SerializedName("lat")
-	val lat: String? = null
+	val lat: Double
 ) : Parcelable

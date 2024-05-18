@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.dicodingstory.data.StoryRepository
 import com.dicoding.dicodingstory.di.Injection
+import com.dicoding.dicodingstory.ui.maps.MapsViewModel
 import com.dicoding.dicodingstory.ui.story.StoryViewModel
 import com.dicoding.dicodingstory.ui.storyform.StoryFormViewModel
 
@@ -16,6 +17,8 @@ class StoryViewModelFactory private constructor(private val storyRepository: Sto
             return StoryViewModel(storyRepository) as T
         } else if (modelClass.isAssignableFrom(StoryFormViewModel::class.java)) {
             return StoryFormViewModel(storyRepository) as T
+        } else if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
+            return MapsViewModel(storyRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
