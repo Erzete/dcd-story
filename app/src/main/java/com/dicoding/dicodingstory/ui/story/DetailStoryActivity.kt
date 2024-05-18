@@ -24,7 +24,7 @@ class DetailStoryActivity : AppCompatActivity() {
             intent.getParcelableExtra(ID_STORY, StoryItem::class.java)
         } else {
             @Suppress("DEPRECATION")
-            intent.getParcelableExtra<StoryItem>(ID_STORY)
+            intent.getParcelableExtra(ID_STORY)
         }
 
         if (story != null) {

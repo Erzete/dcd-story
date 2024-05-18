@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.dicoding.dicodingstory.data.remote.response.StoryItem
 import com.dicoding.dicodingstory.data.remote.retrofit.ApiService
 
+// Not used because I've changed it to RemoteMediator 
 class StoryPagingSource(private val apiService: ApiService) : PagingSource<Int, StoryItem>() {
 
     private companion object {

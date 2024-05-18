@@ -4,13 +4,9 @@ import android.util.Log
 import com.dicoding.dicodingstory.data.local.pref.UserModel
 import com.dicoding.dicodingstory.data.local.pref.UserPreference
 import com.dicoding.dicodingstory.data.remote.response.BasicResponse
-import com.dicoding.dicodingstory.data.remote.response.StoryItem
 import com.dicoding.dicodingstory.data.remote.retrofit.ApiService
 import com.dicoding.dicodingstory.util.wrapEspressoIdlingResource
 import kotlinx.coroutines.flow.Flow
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.HttpException
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,

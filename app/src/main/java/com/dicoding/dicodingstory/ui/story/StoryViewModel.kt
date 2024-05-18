@@ -8,7 +8,7 @@ import androidx.paging.cachedIn
 import com.dicoding.dicodingstory.data.StoryRepository
 import com.dicoding.dicodingstory.data.remote.response.StoryItem
 
-class StoryViewModel(private val storyRepository: StoryRepository) : ViewModel() {
+class StoryViewModel(storyRepository: StoryRepository) : ViewModel() {
     val listStory: LiveData<PagingData<StoryItem>> =
         storyRepository.getAllStory().cachedIn(viewModelScope)
 

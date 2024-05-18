@@ -154,7 +154,7 @@ class StoryFormActivity : AppCompatActivity() {
     }
 
     private fun getUserLocation() {
-        if     (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+        if     (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) ||
             checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
         ){
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->

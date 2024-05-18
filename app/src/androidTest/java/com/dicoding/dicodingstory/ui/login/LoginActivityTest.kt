@@ -19,9 +19,7 @@ import com.dicoding.dicodingstory.data.remote.retrofit.ApiConfig
 import com.dicoding.dicodingstory.util.EspressoIdlingResource
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.CoreMatchers.not
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
