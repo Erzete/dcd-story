@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -34,6 +35,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += listOf("-Xopt-in=kotlin.RequiresOptIn")
     }
     buildFeatures {
         viewBinding = true
@@ -79,6 +81,10 @@ dependencies {
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:3.1.0")
     implementation("androidx.room:room-paging:2.4.0-rc01")
+
+    // Room
+    implementation("androidx.room:room-ktx:2.4.0-rc01")
+    ksp("androidx.room:room-compiler:2.4.0-rc01")
 
     // Testing
     testImplementation("androidx.arch.core:core-testing:2.1.0") // InstantTaskExecutorRule

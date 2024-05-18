@@ -5,6 +5,7 @@ import com.dicoding.dicodingstory.data.StoryRepository
 import com.dicoding.dicodingstory.data.UserRepository
 import com.dicoding.dicodingstory.data.local.pref.UserPreference
 import com.dicoding.dicodingstory.data.local.pref.dataStore
+import com.dicoding.dicodingstory.data.local.room.database.StoryDatabase
 import com.dicoding.dicodingstory.data.remote.retrofit.ApiConfig
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -14,7 +15,8 @@ object Injection {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { pref.getSession().first() }
         val apiService = ApiConfig.getApiService(user.token)
-        return StoryRepository.getInstance(apiService)
+        val database = StoryDatabase.getDatabase(context)
+        return StoryRepository.getInstance(database, apiService)
     }
 
     fun provideUserRepository(context: Context): UserRepository {
