@@ -34,9 +34,9 @@ class StoryRepository private constructor(
         ).liveData
     }
 
-    suspend fun uploadStory(file: MultipartBody.Part, description: RequestBody): BasicResponse {
+    suspend fun uploadStory(file: MultipartBody.Part, description: RequestBody, lat: RequestBody?, lon: RequestBody?): BasicResponse {
         try {
-            return apiService.addNewStory(file, description)
+            return apiService.addNewStory(file, description, lat, lon)
         } catch (e: HttpException) {
             throw e
         }

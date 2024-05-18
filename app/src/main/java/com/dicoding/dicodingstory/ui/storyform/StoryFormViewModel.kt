@@ -10,9 +10,9 @@ import okhttp3.RequestBody
 import retrofit2.HttpException
 
 class StoryFormViewModel(private val storyRepository: StoryRepository) : ViewModel() {
-    suspend fun uploadStory(file: MultipartBody.Part, description: RequestBody) {
+    suspend fun uploadStory(file: MultipartBody.Part, description: RequestBody, lat: RequestBody? = null, lon: RequestBody? = null) {
         try {
-            val stories = storyRepository.uploadStory(file, description)
+            val stories = storyRepository.uploadStory(file, description, lat, lon)
             Log.d("StoryFormViewModel", stories.message)
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
